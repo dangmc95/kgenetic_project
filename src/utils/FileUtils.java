@@ -36,15 +36,20 @@ public class FileUtils {
 	}
 
 	public static List<String> readMultilinesFromFile(File file) {
-		try{
+		try {
 			logger.info("Start: readMultilinesFromFile");
-			FileReader fr= new FileReader(file);
-			BufferedReader br= new BufferedReader(fr);
+			FileReader fr = new FileReader(file);
+			BufferedReader br = new BufferedReader(fr);
+			List<String> lines = new ArrayList<String>();
+			String line = null;
+			while ((line = br.readLine()) != null) {
+				lines.add(line);
+			}
 			br.close();
 			fr.close();
 			logger.info("Finish: readMultilinesFromFile");
-			return null;
-		}catch(Exception ex){
+			return lines;
+		} catch (Exception ex) {
 			logger.error(ex.getMessage());
 			return null;
 		}
